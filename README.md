@@ -6,11 +6,15 @@
 
 ## 异常追踪
 
-> 异常时我们经常遇到的一个`坎`,怎么能越过这道`坎`呢,下面介绍一些常用的`武器`.
+*异常无处不在,当异常发生时,如何快速定位问题呢*
 
-- [traceback](#exception_trace/traceback.md)
-- [better-exceptions](#exception_trace/better_exceptions.md)
-- [sentry](#exception_trace/sentry.md)
+| 标题                                       | 描述                      |
+| ---------------------------------------- | ----------------------- |
+| [traceback](#exception_trace/traceback.md) | 异常基本概念以及`traceback`模块使用 |
+| [better-exceptions](#exception_trace/better_exceptions.md) |                         |
+| [sentry](#exception_trace/sentry.md)     |                         |
+
+
 
 ## 日志
 
