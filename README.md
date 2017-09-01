@@ -10,7 +10,7 @@
 
 | 标题                                       | 描述                      |
 | ---------------------------------------- | ----------------------- |
-| [traceback](#exception_trace/traceback.md) | 异常基本概念以及`traceback`模块使用 |
+| [traceback](https://github.com/510908220/arsenal/blob/master/exception_trace/traceback.md) | 异常基本概念以及`traceback`模块使用 |
 | [better-exceptions](#exception_trace/better_exceptions.md) |                         |
 | [sentry](#exception_trace/sentry.md)     |                         |
 
