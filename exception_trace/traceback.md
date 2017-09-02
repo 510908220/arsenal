@@ -3,7 +3,7 @@
 异常信息通常使用`sys.exc_info()`返回,这里介绍一下返回值:
 - type:  异常的类型, `BaseException`的子类
 - value:  异常实例
-- traceback: `traceback object `, 异常发生时调用栈信息.
+- traceback: `traceback object `, 异常发生时调用栈信息, 是由一些列`Frame`组成的.
 
 
 
@@ -59,7 +59,15 @@ if __name__ == '__main__':
         main()
     ```
 
-    ​
+- `traceback.extract_tb(tb, limit=None)`
+  返回异常时调用栈的一个列表. 类型为`FrameSummary`
+  执行输出:
+  ```
+  [<FrameSummary file tc.py, line 20 in <module>>, 
+  <FrameSummary file tc.py, line 15 in main>, 
+  <FrameSummary file tc.py, line 5 in get_ip>]
+  ```
+
 
 - `traceback.print_exception(etype, value, tb, limit=None, file=None, chain=True)` 
 
@@ -81,6 +89,60 @@ if __name__ == '__main__':
 
 - ​`traceback.format_exc(limit=None, chain=True)`
   和` print_exc(limit)`很像,只是返回的是个字符串.
+
+- ​`traceback.extract_stack(f=None, limit=None)`
+  获取调用栈列表:
+  ```python
+  import traceback
+
+  def get_ip(log):
+      for stack in traceback.extract_stack():
+          print('#:', stack)
+
+      return log.split(' ')[0]
+
+  def main():
+      ip = get_ip('192.168.0.1 linux')
+  main()
+  ```
+  输出为:
+  ```python
+  #: <FrameSummary file tc.py, line 13 in <module>>
+  #: <FrameSummary file tc.py, line 12 in main>
+  #: <FrameSummary file tc.py, line 5 in get_ip>
+  ```
+   `FrameSummary`表示调用栈的某一层.
+
+- `traceback.print_stack(f=None, limit=None, file=None)  `
+  打印出调用栈,如图:
+  ```python
+    import traceback
+    def get_ip(log):
+        traceback.print_stack()
+        return log.split(' ')[0]
+    def main():
+        ip = get_ip('192.168.0.1 linux')
+    main()
+  ```
+  输出为
+   ```python
+  File "tc.py", line 12, in <module>
+    main()
+  File "tc.py", line 11, in main
+    ip = get_ip('192.168.0.1 linux')
+  File "tc.py", line 5, in get_ip
+    traceback.print_stack()
+   ```
+
+
+
+
+## FrameSummary
+`FrameSummary`是 python 3.5出现的,表示调用栈的某一层. 
+
+其中`traceback.extract_tb`和`traceback.extract_stack`都会返回调用栈的列表,我理解区别就是`traceback.extract_tb`是获取发生异常时调用栈的列表.
+
+
 
 ## 异常处理
 
